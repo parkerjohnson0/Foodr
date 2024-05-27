@@ -1,0 +1,9 @@
+{
+    "TestUser":{
+        "ID":1,
+        "DisplayName": "RyanH",
+        "Email": "ryanh@gmail.com",
+        "Password": "password",
+        "Avatar": "test.png"
+    }
+} 

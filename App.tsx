@@ -5,19 +5,16 @@ import { useFonts } from 'expo-font'
 import { StyleSheet, Text, View } from 'react-native';
 import SettingsScreen from './screens/SettingsScreen';
 import { useCallback } from 'react';
+import { HomeScreen } from './screens/HomeScreen';
+import UserThumb from './screens/components/UserThumb';
+import { useUserStore } from './state/UserStore';
+import LoginScreen from './screens/LoginScreen';
 
 const Stack = createNativeStackNavigator();
 
-function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>HomeScreen</Text>
-      <StatusBar style="auto" />
-    </View>
-  )
-}
 export default function App() {
 
+  const {user} = useUserStore();
   const [fontsLoaded] = useFonts({
     'Poppins': require('./assets/fonts/Poppins-Regular.ttf')
   })
@@ -27,10 +24,21 @@ export default function App() {
         headerTitle: '🍔 Foodr 🍔',
         headerStyle: styles.headerStyle,
         headerTintColor: '#EDF7F6',
-        headerTitleStyle: styles.headerTitleStyle
+        headerTitleStyle: styles.headerTitleStyle,
+        headerRight: () =>{
+          return <UserThumb user={user!}/>
+        }
+
       }}>
-        <Stack.Screen options={{ headerTitleAlign: 'center' }} name="Home" component={HomeScreen} />
-        <Stack.Screen options={{ headerTitleAlign: 'center' }} name="Settings" component={SettingsScreen} />
+        {
+          user ?
+          <>
+            <Stack.Screen options={{ headerTitleAlign: 'center' }} name="Home" component={HomeScreen} />
+            <Stack.Screen options={{ headerTitleAlign: 'center' }} name="Settings" component={SettingsScreen} />
+          </>
+          :
+          <Stack.Screen options={{headerTitleAlign: 'center'}} name="Login" component={LoginScreen}/>
+        }
       </Stack.Navigator >
 
     </NavigationContainer>
@@ -39,20 +47,12 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily: 'Poppins'
-  },
   headerStyle: {
     backgroundColor: '#FF5A5F',
-    fontFamily: 'Times New Roman'
   },
   headerTitleStyle: {
     fontFamily: 'Poppins',
     fontWeight: 'bold',
-    fontSize: 36
+    fontSize: 36,
   }
 });
