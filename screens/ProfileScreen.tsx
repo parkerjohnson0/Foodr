@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { View, Text } from "react-native";
 
-function SettingsScreen() {
+function ProfileScreen() {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>
@@ -13,4 +13,4 @@ function SettingsScreen() {
     );
 }
 
-export default SettingsScreen;
+export default ProfileScreen;

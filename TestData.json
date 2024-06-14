@@ -1,9 +1,9 @@
 {
-    "TestUser":{
-        "ID":1,
+    "TestUser": {
+        "ID": 1,
         "DisplayName": "RyanH",
         "Email": "ryanh@gmail.com",
         "Password": "password",
-        "Avatar": "test.png"
+        "Avatar": "https://spotify.pjohnson-projects.com/icons/lounge_user_icon.png"
     }
-} 
+}
